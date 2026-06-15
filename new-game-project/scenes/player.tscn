@@ -1,21 +1,22 @@
-[gd_scene format=3 uid="uid://yicge48108e0"]
+[gd_scene format=3 uid="uid://be8qbmt0fe144"]
 
-[ext_resource type="Texture2D" uid="uid://cwf1bm76xv78p" path="res://assets/sprites/knight.png" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://cwf1bm76xv78p" path="res://assets/sprites/knight.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c3ubxpp10k6x6" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqjtg"]
-atlas = ExtResource("1_uwrxv")
+atlas = ExtResource("1_3vyb7")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnu2h"]
-atlas = ExtResource("1_uwrxv")
+atlas = ExtResource("1_3vyb7")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbhrr"]
-atlas = ExtResource("1_uwrxv")
+atlas = ExtResource("1_3vyb7")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iywne"]
-atlas = ExtResource("1_uwrxv")
+atlas = ExtResource("1_3vyb7")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p57ef"]
@@ -41,17 +42,30 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
 radius = 5.0
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g2els"]
+
 [node name="Game" type="Node2D" unique_id=323350627]
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1605971703]
+script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=618132523]
 position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_p57ef")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.18009283
+frame_progress = 0.7161154
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1321940059]
 position = Vector2(1, -6)
 shape = SubResource("CircleShape2D_u5sy4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2032350008]
+position = Vector2(1, -6)
+zoom = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=223410497]
+position = Vector2(0, 26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=135116449]
+shape = SubResource("WorldBoundaryShape2D_g2els")
